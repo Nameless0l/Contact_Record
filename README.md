@@ -1,3 +1,4 @@
+## Projet pas encore terminé
 ```mermaid
 erDiagram
     CONTACTS {
