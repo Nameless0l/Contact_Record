@@ -13,6 +13,7 @@ public abstract   class Contact {
     private String email;
     private String telNumber;
 
+
     public Contact(String code, String nom, String date, String address, String email, String telNumber) {
         this.code = code;
         this.nom = nom;
@@ -21,7 +22,6 @@ public abstract   class Contact {
         this.email = email;
         this.telNumber = telNumber;
     }
-
     public abstract void insertContact(Connection connection) throws SQLException;
     public void Contact(Connection connection) throws SQLException {
         try {

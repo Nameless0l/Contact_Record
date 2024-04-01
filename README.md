@@ -1,4 +1,10 @@
-## Projet pas encore terminé
+# Projet Gestion Des Contacts
+![Shema de la BD](./src/img.png)
+## Fenetre  :
+### Enregistrer un contact
+![Shema de la BD](./src/img_1.png)
+### Liste des contacts
+![Shema de la BD](./src/img_2.png)
 ```mermaid
 erDiagram
     CONTACTS {
@@ -40,3 +46,12 @@ erDiagram
  <h1><center>Shema de la BD</center></h1>
 
 ![Shema de la BD](./src/shema_bd.png)
+
+
+## Comment Lancer le projet
+1) Clonner le Projet
+
+2) Sur la racine du projet excecuter la commande
+```bash
+     java MainFrmApplication
+```
