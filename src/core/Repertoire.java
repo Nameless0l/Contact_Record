@@ -4,7 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Repertoire {
-    private int repertoire;
+    public List<Contact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(List<Contact> contacts) {
+        this.contacts = contacts;
+    }
+
     private List<Contact> contacts;
 
     public Repertoire() {
@@ -32,5 +39,8 @@ public class Repertoire {
             }
         }
         return null;
+    }
+    public int getNombreContacts() {
+        return this.contacts.size();
     }
 }

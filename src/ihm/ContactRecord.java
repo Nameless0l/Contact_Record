@@ -4,18 +4,44 @@
  */
 package ihm;
 
+import core.Agent;
+import core.Contact;
+import core.Enseignant;
+import core.Etudiant;
+import core.Repertoire;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author nameless
  */
 public class ContactRecord extends javax.swing.JFrame {
-
+    private Repertoire repertoire;
+    private String type_contact;
+    private MainFrmApplication m = new MainFrmApplication() ;
+    private Connection connection;
     /**
      * Creates new form ContactRecord
      */
-    public ContactRecord() {
+    ArrayList<Object[]> dataList = new ArrayList<>();
+
+    public ContactRecord(Connection connection) {
+        // Ajoutez vos données à dataList, par exemple :
+//        dataList.add(new Object[]{"code1", "nom1", "date1", "address1", "email1"});
+//        dataList.add(new Object[]{"code2", "nom2", "date2", "address2", "email2"});
         initComponents();
+        this.connection = connection;
+        this.repertoire = new Repertoire();
+        this.setVisible(true);
+        jScrollPane2.setVisible(false);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,57 +52,555 @@ public class ContactRecord extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        Cadre = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        EtudiantButton = new javax.swing.JRadioButton();
+        Agent_Button = new javax.swing.JRadioButton();
+        Enseignant_button = new javax.swing.JRadioButton();
+        jLabel2 = new javax.swing.JLabel();
+        code = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        nom = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        dateNai = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        email = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        tel = new javax.swing.JTextField();
+        salaire = new javax.swing.JLabel();
+        salaire_agent_val = new javax.swing.JTextField();
+        statutLabel = new javax.swing.JLabel();
+        statutVal = new javax.swing.JComboBox<>();
+        categorieLabel = new javax.swing.JLabel();
+        indiceSalaireLabel = new javax.swing.JLabel();
+        occupationLabel = new javax.swing.JLabel();
+        categorieValue = new javax.swing.JTextField();
+        indiceSalaire = new javax.swing.JTextField();
+        occupation = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableAdd = new javax.swing.JTable();
+        Add = new javax.swing.JButton();
+        Save = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        address = new javax.swing.JTextField();
+        currentOption = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        Cadre.setBackground(new java.awt.Color(255, 255, 255));
+        Cadre.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                CadreComponentHidden(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Roboto Medium", 1, 48)); // NOI18N
+        jLabel1.setText("Creation de contacts");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jButton3.setBackground(new java.awt.Color(255, 51, 51));
+        jButton3.setFont(new java.awt.Font("Ubuntu", 0, 36)); // NOI18N
+        jButton3.setText("X");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        EtudiantButton.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup2.add(EtudiantButton);
+        EtudiantButton.setFont(new java.awt.Font("Roboto Medium", 1, 24)); // NOI18N
+        EtudiantButton.setText("Etudiant");
+        EtudiantButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EtudiantButtonActionPerformed(evt);
+            }
+        });
+
+        Agent_Button.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup2.add(Agent_Button);
+        Agent_Button.setFont(new java.awt.Font("Roboto Medium", 1, 24)); // NOI18N
+        Agent_Button.setText("Agent");
+        Agent_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Agent_ButtonActionPerformed(evt);
+            }
+        });
+
+        Enseignant_button.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup2.add(Enseignant_button);
+        Enseignant_button.setFont(new java.awt.Font("Roboto Medium", 1, 24)); // NOI18N
+        Enseignant_button.setText("Enseignant");
+        Enseignant_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Enseignant_buttonActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Code");
+
+        code.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel3.setText("Nom");
+
+        nom.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        nom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Date de naissance");
+
+        dateNai.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel5.setText("Email");
+
+        email.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel6.setText("Telephone");
+
+        tel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        tel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                telActionPerformed(evt);
+            }
+        });
+
+        salaire.setText("Salaire");
+
+        salaire_agent_val.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salaire_agent_valActionPerformed(evt);
+            }
+        });
+
+        statutLabel.setText("Statut");
+
+        statutVal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Temporaire", "Stagiaire", "Permanent" }));
+        statutVal.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                statutValItemStateChanged(evt);
+            }
+        });
+        statutVal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statutValActionPerformed(evt);
+            }
+        });
+
+        categorieLabel.setText("Categorie");
+
+        indiceSalaireLabel.setText("Indice Salaire");
+
+        occupationLabel.setText("Occupation");
+
+        categorieValue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categorieValueActionPerformed(evt);
+            }
+        });
+
+        tableAdd.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "code", "nom", "date", "address", "email"
+            }
+        ));
+        jScrollPane2.setViewportView(tableAdd);
+
+        Add.setBackground(new java.awt.Color(0, 204, 51));
+        Add.setText("Ajouter");
+        Add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddActionPerformed(evt);
+            }
+        });
+
+        Save.setBackground(new java.awt.Color(0, 153, 204));
+        Save.setText("Enregistrer");
+        Save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Adress");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout CadreLayout = new javax.swing.GroupLayout(Cadre);
+        Cadre.setLayout(CadreLayout);
+        CadreLayout.setHorizontalGroup(
+            CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CadreLayout.createSequentialGroup()
+                .addGap(238, 238, 238)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3))
+            .addGroup(CadreLayout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CadreLayout.createSequentialGroup()
+                        .addComponent(currentOption, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(CadreLayout.createSequentialGroup()
+                        .addComponent(Agent_Button)
+                        .addGap(246, 246, 246)
+                        .addComponent(EtudiantButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Enseignant_button)
+                        .addGap(89, 89, 89))
+                    .addGroup(CadreLayout.createSequentialGroup()
+                        .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(categorieLabel)
+                            .addComponent(indiceSalaireLabel)
+                            .addComponent(occupationLabel)
+                            .addComponent(salaire)
+                            .addComponent(statutLabel)
+                            .addComponent(jButton1))
+                        .addGap(79, 79, 79)
+                        .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(occupation, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                            .addComponent(dateNai, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                            .addComponent(code, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                            .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                            .addComponent(nom, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                            .addComponent(categorieValue, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                            .addComponent(indiceSalaire, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                            .addComponent(statutVal, 0, 250, Short.MAX_VALUE)
+                            .addComponent(tel, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                            .addComponent(salaire_agent_val, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                            .addComponent(address))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(CadreLayout.createSequentialGroup()
+                        .addComponent(Add)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Save)
+                        .addGap(219, 219, 219))))
+        );
+        CadreLayout.setVerticalGroup(
+            CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(CadreLayout.createSequentialGroup()
+                .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CadreLayout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Agent_Button)
+                            .addComponent(EtudiantButton)
+                            .addComponent(Enseignant_button)))
+                    .addGroup(CadreLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1))
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addComponent(currentOption, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CadreLayout.createSequentialGroup()
+                        .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(code, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(CadreLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(23, 23, 23)
+                                .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel3)
+                                    .addComponent(nom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(19, 19, 19)
+                        .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(dateNai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)
+                        .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)
+                        .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(tel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(statutLabel)
+                            .addComponent(statutVal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(salaire)
+                            .addComponent(salaire_agent_val, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(categorieLabel)
+                            .addComponent(categorieValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(indiceSalaireLabel)
+                            .addComponent(indiceSalaire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(occupationLabel)
+                            .addComponent(occupation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane2))
+                .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CadreLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(Add))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CadreLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Save)
+                        .addContainerGap())))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(Cadre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Cadre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void CadreComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_CadreComponentHidden
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_CadreComponentHidden
+
+    private void categorieValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categorieValueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_categorieValueActionPerformed
+
+    private void statutValActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statutValActionPerformed
+        // TODO add your handling code here:
+        statutVal.getSelectedItem().toString();
+    }//GEN-LAST:event_statutValActionPerformed
+
+    private void statutValItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_statutValItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_statutValItemStateChanged
+
+    private void telActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_telActionPerformed
+
+    private void nomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomActionPerformed
+
+    private void Agent_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Agent_ButtonActionPerformed
+        // TODO add your handling code here:
+        currentOption.setText(Agent_Button.getText());
+        salaire.setVisible(true);
+        occupationLabel.setVisible(true);
+        occupation.setVisible(true);
+        indiceSalaireLabel.setVisible(true);
+        indiceSalaire.setVisible(true);
+        categorieLabel.setVisible(true);
+        categorieValue.setVisible(true);
+        salaire_agent_val.setVisible(true);
+        statutLabel.setVisible(true);
+        statutVal.setVisible(true);
+        //Modification des valeurs
+        salaire.setText("Salaire");
+        jScrollPane2.setVisible(true);
+        // Créez un tableau à deux dimensions pour stocker vos données
+       // Mettez à jour les données dans votre tableau existant
+for (int i = 0; i < dataList.size(); i++) {
+    Object[] rowData = dataList.get(i);
+    for (int j = 0; j < rowData.length; j++) {
+        tableAdd.setValueAt(rowData[j], i, j);
+    }
+}
+        
+    }//GEN-LAST:event_Agent_ButtonActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void salaire_agent_valActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salaire_agent_valActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_salaire_agent_valActionPerformed
+
+    private void EtudiantButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EtudiantButtonActionPerformed
+        // TODO add your handling code here:.
+        currentOption.setText(EtudiantButton.getText());
+        salaire.setVisible(true);
+        occupationLabel.setVisible(false);
+        occupation.setVisible(false);
+        indiceSalaireLabel.setVisible(false);
+        indiceSalaire.setVisible(false);
+        categorieLabel.setVisible(false);
+        categorieValue.hide();
+        salaire_agent_val.setVisible(true);
+        statutLabel.setVisible(true);
+        statutVal.setVisible(true);
+        jScrollPane2.setVisible(true);
+        
+        //Nous allons remplacer les variables
+        salaire.setText("Niveau");
+        statutLabel.setText("Cycle");
+        statutVal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Licence", "Ingénieur"}));
+
+    }//GEN-LAST:event_EtudiantButtonActionPerformed
+
+    private void Enseignant_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Enseignant_buttonActionPerformed
+        // TODO add your handling code here:
+        currentOption.setText(Enseignant_button.getText());
+        // TODO add your handling code here:.
+        salaire.setVisible(false);
+        occupationLabel.setVisible(false);
+        occupation.setVisible(false);
+        indiceSalaireLabel.setVisible(false);
+        indiceSalaire.setVisible(false);
+        categorieLabel.setVisible(false);
+        categorieValue.hide();
+        salaire_agent_val.setVisible(false);
+        statutLabel.setVisible(true);
+        statutVal.setVisible(true);
+        jScrollPane2.setVisible(true);
+        //Nous allons remplacer les variables
+//        salaire.setText("Niveau");
+        statutLabel.setText("Statut");
+         statutVal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vacataire", "Permanent"}));
+
+    }//GEN-LAST:event_Enseignant_buttonActionPerformed
+
+    private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
+        // TODO add your handling code here:
+        if(EtudiantButton.getText() == "Etudiant"){
+
+//            currentOption.setText(String.valueOf(this.repertoire.getNombreContacts()));
+            currentOption.setText("Etudiant");
+//            Contact etudiant = new Etudiant("code_et4","mbassi","12/20/2001","melen","wwwmbassiloic@gmail.com","656820591","Ingenieur","3GI");
+           Etudiant etudiant = new Etudiant(code.getText(),nom.getText(),dateNai.getText(),address.getText(),email.getText(),tel.getText(),salaire_agent_val.getText(),statutVal.getSelectedItem().toString());
+            if (this.repertoire != null) { // Vérification que l'objet repertoire n'est pas null
+               this.repertoire.ajouterContact(etudiant);
+               dataList.add(new Object[]{etudiant.getCode(), etudiant.getNom(),etudiant.getAddress(),etudiant.getEmail(), etudiant.getDate()});
+               System.out.println("Etudiant");
+               for (int i = 0; i < dataList.size(); i++) {
+                    Object[] rowData = dataList.get(i);
+                    for (int j = 0; j < rowData.length; j++) {
+                        tableAdd.setValueAt(rowData[j], i, j);
+                    }
+                }
+           } else {
+               System.out.println("L'objet repertoire n'est pas initialisé.");
+           }
+        }else if("Enseignant".equals(Enseignant_button.getText())){
+             Contact enseignant = new Enseignant(code.getText(),nom.getText(),dateNai.getText(),address.getText(),email.getText(),tel.getText(),statutVal.getSelectedItem().toString());
+            this.repertoire.ajouterContact(enseignant);
+            dataList.add(new Object[]{enseignant.getCode(), enseignant.getNom(),enseignant.getAddress(),enseignant.getEmail(), enseignant.getDate()});
+            for (int i = 0; i < dataList.size(); i++) {
+                    Object[] rowData = dataList.get(i);
+                    for (int j = 0; j < rowData.length; j++) {
+                        tableAdd.setValueAt(rowData[j], i, j);
+                    }
+            }
+            System.out.println("Enseignant");
+        }else{
+             Contact agent;
+            agent = new Agent(code.getText(),nom.getText(),dateNai.getText(),address.getText(),email.getText(),tel.getText(),statutVal.getSelectedItem().toString(),categorieValue.getText(),indiceSalaire.getText(),occupation.getText() ,Double.parseDouble(salaire_agent_val.getText()));
+             this.repertoire.ajouterContact(agent);
+             dataList.add(new Object[]{code.getText(), nom.getText(),address.getText(),email.getText(), tel.getText()});
+             for (int i = 0; i < dataList.size(); i++) {
+                    Object[] rowData = dataList.get(i);
+                    for (int j = 0; j < rowData.length; j++) {
+                        tableAdd.setValueAt(rowData[j], i, j);
+                    }
+                }
+             System.out.println("Agent");
+            
+        }
+//        this.repertoire.ajouterContact(contact);
+    }//GEN-LAST:event_AddActionPerformed
+
+    private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
+        // TODO add your handling code here:
+        m.enregistrer();
+    }//GEN-LAST:event_SaveActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ContactRecord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ContactRecord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ContactRecord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ContactRecord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ContactRecord().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Add;
+    private javax.swing.JRadioButton Agent_Button;
+    private javax.swing.JPanel Cadre;
+    private javax.swing.JRadioButton Enseignant_button;
+    private javax.swing.JRadioButton EtudiantButton;
+    private javax.swing.JButton Save;
+    private javax.swing.JTextField address;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JLabel categorieLabel;
+    private javax.swing.JTextField categorieValue;
+    private javax.swing.JTextField code;
+    private javax.swing.JLabel currentOption;
+    private javax.swing.JTextField dateNai;
+    private javax.swing.JTextField email;
+    private javax.swing.JTextField indiceSalaire;
+    private javax.swing.JLabel indiceSalaireLabel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField nom;
+    private javax.swing.JTextField occupation;
+    private javax.swing.JLabel occupationLabel;
+    private javax.swing.JLabel salaire;
+    private javax.swing.JTextField salaire_agent_val;
+    private javax.swing.JLabel statutLabel;
+    private javax.swing.JComboBox<String> statutVal;
+    private javax.swing.JTable tableAdd;
+    private javax.swing.JTextField tel;
     // End of variables declaration//GEN-END:variables
 }

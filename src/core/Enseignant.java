@@ -15,7 +15,7 @@ public class Enseignant extends Contact{
     @Override
     public void insertContact(Connection connection) {
         try{
-            super.insertContact(connection);
+            super.Contact(connection);
             String query_enseignant = "INSERT INTO enseignants (code_enseignant,statut) VALUES (?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query_enseignant);
             preparedStatement.setString(1, super.getCode());

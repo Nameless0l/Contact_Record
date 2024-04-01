@@ -22,7 +22,7 @@ public class Agent extends Contact{
     @Override
     public void insertContact(Connection connection) {
         try{
-            super.insertContact(connection);
+            super.Contact(connection);
             String query_agent = "INSERT INTO agents (code_agent,statut,categorie,occupation,indice_salaire,salaire) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query_agent);
             preparedStatement.setString(1, super.getCode());

@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public  class Contact {
+public abstract   class Contact {
     private String code;
     private String nom;
     private String date;
@@ -22,8 +22,8 @@ public  class Contact {
         this.telNumber = telNumber;
     }
 
-//    public abstract void insertContact(Connection connection) throws SQLException;
-    public void insertContact(Connection connection) throws SQLException {
+    public abstract void insertContact(Connection connection) throws SQLException;
+    public void Contact(Connection connection) throws SQLException {
         try {
             // Insérer les données communes dans la table "contacts"
             String queryContacts = "INSERT INTO contacts (code, nom, date_naissance, address, telNumber, email) " +

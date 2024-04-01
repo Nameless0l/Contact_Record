@@ -40,7 +40,7 @@ public class Etudiant extends Contact{
     @Override
     public void insertContact(Connection connection) throws SQLException {
         try{
-            super.insertContact(connection);
+            super.Contact(connection);
             String query_etudiant = "INSERT INTO etudiants (code_etudiant,cycle,niveau) VALUES (?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query_etudiant);
             preparedStatement.setString(1, super.getCode());
