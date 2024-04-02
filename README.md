@@ -49,8 +49,10 @@ erDiagram
 
 
 ## Comment Lancer le projet
-1) Clonner le Projet
-
+1) Clonner le Projet : 
+```bash
+     https://github.com/Nameless0l/Contact_Record.git
+```
 2) Sur la racine du projet excecuter la commande
 ```bash
      java MainFrmApplication
