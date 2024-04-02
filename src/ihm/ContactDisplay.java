@@ -4,9 +4,13 @@
  */
 package ihm;
 
+import core.Contact;
+import core.Repertoire;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -19,11 +23,37 @@ public class ContactDisplay extends javax.swing.JFrame {
      * 
      */
     Connection connection ;
+    Repertoire repertoire1;
+    ArrayList<Object[]> dataList = new ArrayList<>();
+    private List<Contact> contacts;
+//    Contact
+    
     public ContactDisplay(Connection connection) {
         this.connection = connection;
-        initComponents();
+        this.repertoire1 =new Repertoire(this.connection);
+                initComponents();
+
+        this.contacts = this.repertoire1.getContactsBd("Etudiant");
+        for(Contact contact:this.contacts){
+            dataList.add(new Object[]{contact.getCode(), "Etudiant", contact.getNom(),contact.getEmail(), contact.getAddress(),contact.getTelNumber(),contact.getDate()});
+        }
+        this.contacts = this.repertoire1.getContactsBd("Agent");
+        for(Contact contact:this.contacts){
+            dataList.add(new Object[]{contact.getCode(), "Agent", contact.getNom(),contact.getEmail(), contact.getAddress(),contact.getTelNumber(),contact.getDate()});
+        }
+        this.contacts = this.repertoire1.getContactsBd("Enseignant");
+        for(Contact contact:this.contacts){
+            dataList.add(new Object[]{contact.getCode(), "Enseignant", contact.getNom(),contact.getEmail(), contact.getAddress(),contact.getTelNumber(),contact.getDate()});
+        }
+        for (int i = 0; i < dataList.size(); i++) {
+                    Object[] rowData = dataList.get(i);
+                    for (int j = 0; j < rowData.length; j++) {
+                        this.repertoire.setValueAt(rowData[j], i, j);
+                    }
+                }
+//        for(Contact contact : contacts)
     }
-        public ContactDisplay() {
+    public ContactDisplay() {
         this.connection = connection;
         initComponents();
     }

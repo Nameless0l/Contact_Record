@@ -33,7 +33,7 @@ public class ContactRecord extends javax.swing.JFrame {
 
     public ContactRecord(Connection connection) {
         // Ajoutez vos données à dataList, par exemple :
-//        dataList.add(new Object[]{"code1", "nom1", "date1", "address1", "email1"});
+        dataList.add(new Object[]{"code1", "nom1", "date1", "address1", "email1"});
 //        dataList.add(new Object[]{"code2", "nom2", "date2", "address2", "email2"});
         initComponents();
         this.connection = connection;
@@ -55,7 +55,6 @@ public class ContactRecord extends javax.swing.JFrame {
         buttonGroup2 = new javax.swing.ButtonGroup();
         Cadre = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
         EtudiantButton = new javax.swing.JRadioButton();
         Agent_Button = new javax.swing.JRadioButton();
         Enseignant_button = new javax.swing.JRadioButton();
@@ -83,9 +82,9 @@ public class ContactRecord extends javax.swing.JFrame {
         tableAdd = new javax.swing.JTable();
         Add = new javax.swing.JButton();
         Save = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         address = new javax.swing.JTextField();
         currentOption = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,15 +98,6 @@ public class ContactRecord extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Roboto Medium", 1, 48)); // NOI18N
         jLabel1.setText("Creation de contacts");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jButton3.setBackground(new java.awt.Color(255, 51, 51));
-        jButton3.setFont(new java.awt.Font("Ubuntu", 0, 36)); // NOI18N
-        jButton3.setText("X");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
 
         EtudiantButton.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup2.add(EtudiantButton);
@@ -248,12 +238,7 @@ public class ContactRecord extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Adress");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jLabel7.setText("Address");
 
         javax.swing.GroupLayout CadreLayout = new javax.swing.GroupLayout(Cadre);
         Cadre.setLayout(CadreLayout);
@@ -262,8 +247,7 @@ public class ContactRecord extends javax.swing.JFrame {
             .addGroup(CadreLayout.createSequentialGroup()
                 .addGap(238, 238, 238)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(CadreLayout.createSequentialGroup()
                 .addGap(56, 56, 56)
                 .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,33 +262,37 @@ public class ContactRecord extends javax.swing.JFrame {
                         .addComponent(Enseignant_button)
                         .addGap(89, 89, 89))
                     .addGroup(CadreLayout.createSequentialGroup()
-                        .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(categorieLabel)
-                            .addComponent(indiceSalaireLabel)
-                            .addComponent(occupationLabel)
-                            .addComponent(salaire)
-                            .addComponent(statutLabel)
-                            .addComponent(jButton1))
-                        .addGap(79, 79, 79)
                         .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(occupation, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(dateNai, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(code, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(nom, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(categorieValue, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(indiceSalaire, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(statutVal, 0, 250, Short.MAX_VALUE)
-                            .addComponent(tel, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(salaire_agent_val, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(address))
+                            .addGroup(CadreLayout.createSequentialGroup()
+                                .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addComponent(categorieLabel)
+                                    .addComponent(indiceSalaireLabel)
+                                    .addComponent(occupationLabel)
+                                    .addComponent(salaire)
+                                    .addComponent(statutLabel))
+                                .addGap(79, 79, 79)
+                                .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(occupation, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                    .addComponent(dateNai, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                    .addComponent(code, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                    .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                    .addComponent(nom, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                    .addComponent(categorieValue, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                    .addComponent(indiceSalaire, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                    .addComponent(statutVal, 0, 250, Short.MAX_VALUE)
+                                    .addComponent(tel, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                    .addComponent(salaire_agent_val, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)))
+                            .addGroup(CadreLayout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(CadreLayout.createSequentialGroup()
                         .addComponent(Add)
@@ -324,8 +312,7 @@ public class ContactRecord extends javax.swing.JFrame {
                             .addComponent(Enseignant_button)))
                     .addGroup(CadreLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1))
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel1)))
                 .addGap(35, 35, 35)
                 .addComponent(currentOption, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -351,7 +338,11 @@ public class ContactRecord extends javax.swing.JFrame {
                         .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(tel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25)
+                        .addGap(18, 18, 18)
+                        .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(statutLabel)
                             .addComponent(statutVal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -370,12 +361,8 @@ public class ContactRecord extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(occupationLabel)
-                            .addComponent(occupation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane2))
+                            .addComponent(occupation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE))
                 .addGroup(CadreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CadreLayout.createSequentialGroup()
                         .addGap(16, 16, 16)
@@ -390,14 +377,16 @@ public class ContactRecord extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Cadre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Cadre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Cadre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 12, Short.MAX_VALUE)
+                .addComponent(Cadre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -455,10 +444,6 @@ for (int i = 0; i < dataList.size(); i++) {
 }
         
     }//GEN-LAST:event_Agent_ButtonActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void salaire_agent_valActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salaire_agent_valActionPerformed
         // TODO add your handling code here:
@@ -562,10 +547,6 @@ for (int i = 0; i < dataList.size(); i++) {
         m.enregistrer(this.repertoire);
     }//GEN-LAST:event_SaveActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -586,14 +567,13 @@ for (int i = 0; i < dataList.size(); i++) {
     private javax.swing.JTextField email;
     private javax.swing.JTextField indiceSalaire;
     private javax.swing.JLabel indiceSalaireLabel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField nom;
     private javax.swing.JTextField occupation;
