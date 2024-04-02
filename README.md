@@ -4,7 +4,7 @@
 ### Enregistrer un contact
 ![Shema de la BD](./src/img_1.png)
 ### Liste des contacts
-![Shema de la BD](./src/img_2.png)
+![Shema de la BD](./src/img_3.png)
 ```mermaid
 erDiagram
     CONTACTS {
