@@ -26,6 +26,7 @@ public class MainFrmApplication extends javax.swing.JFrame {
     }
     public MainFrmApplication() {
         initComponents();
+        this.setVisible(true);
     }
     public void enregistrer( Repertoire repertoire){
         for (Contact contact: repertoire.getContacts()){

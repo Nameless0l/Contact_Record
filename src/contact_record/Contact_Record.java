@@ -4,6 +4,8 @@
  */
 package contact_record;
 
+import ihm.MainFrmApplication;
+
 /**
  *
  * @author nameless
@@ -15,6 +17,7 @@ public class Contact_Record {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        MainFrmApplication app = new MainFrmApplication();
     }
     
 }
